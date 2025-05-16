@@ -1,8 +1,15 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static('public'));
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Optional: Define API routes
+app.get('/users/get', (req, res) => {
+  res.json({ message: 'Hello from Fargate backend!' });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

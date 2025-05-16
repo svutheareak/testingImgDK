@@ -1,17 +1,20 @@
 # Use official Node image
 FROM node:18-alpine
 
-# Create app directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy app files
-COPY . .
+# Copy dependency files first
+COPY package*.json ./
 
 # Install dependencies
-RUN npm install express
+RUN npm install
 
-# Expose the port
+# Copy the rest of your app code
+COPY . .
+
+# Expose the port your app listens on
 EXPOSE 3000
 
-# Run the app
-CMD ["node", "server.js"]
+# Run your server
+CMD ["npm", "start"]
