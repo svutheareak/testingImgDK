@@ -13,8 +13,8 @@ RUN npm install
 # Copy the rest of your app code
 COPY . .
 
-# Expose the port your app listens on
-EXPOSE 3000
+# Expose port 80 instead of 3000
+EXPOSE 80
 
 # Run your server
 CMD ["npm", "start"]
