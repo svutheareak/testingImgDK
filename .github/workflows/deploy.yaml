@@ -17,7 +17,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION_01 }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -37,13 +37,13 @@ jobs:
           
           echo "Pushing Docker image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          
+
       - name: Force ECS to pull latest image and redeploy
         run: |
           aws ecs update-service \
             --cluster test-app-cluster \
             --service task-cl-app-service-woxc06lu \
             --force-new-deployment \
-            --region ${{ secrets.AWS_REGION }}
+            --region us-east-1 \
 
 
