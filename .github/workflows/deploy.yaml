@@ -42,7 +42,7 @@ jobs:
         run: |
           aws ecs update-service \
             --cluster test-app-cluster \
-            --service task-cl-app-service-woxc06lu \
+            --service task-Cl-app-service-woxc06lu \
             --force-new-deployment \
             --region us-east-1
 
