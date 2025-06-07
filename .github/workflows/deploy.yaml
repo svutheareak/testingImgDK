@@ -34,9 +34,14 @@ jobs:
 
       - name: Debug ECS settings
         run: |
-          echo "Cluster: ${{ secrets.ECS_CLUSTER }}"
-          echo "Service: ${{ secrets.ECS_SERVICE }}"
-          echo "Region: ${{ secrets.AWS_REGION }}"
-          echo "Region: ${{ secrets.AWS_REGION_01 }}"
+          echo "Cluster: ${{ test-app-clusterR }}"
+          echo "Service: ${{ task-CI-app-service-woxcO6lu }}"
+          echo "Region: ${{ us-east-1 }}"
 
-
+      - name: Force ECS to pull latest image and redeploy
+        run: |
+          aws ecs update-service \
+            --cluster ${{ test-app-clusterR }} \
+            --service ${{ task-CI-app-service-woxcO6lu }} \
+            --force-new-deployment \
+            --region ${{ us-east-1 }}
