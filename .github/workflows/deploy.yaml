@@ -44,6 +44,6 @@ jobs:
             --cluster test-app-cluster \
             --service task-cl-app-service-woxc06lu \
             --force-new-deployment \
-            --region us-east-1 \
+            --region us-east-1
 
 
