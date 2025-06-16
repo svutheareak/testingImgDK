@@ -38,12 +38,5 @@ jobs:
           echo "Pushing Docker image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-      - name: Force ECS to pull latest image and redeploy
-        run: |
-          aws ecs update-service \
-            --cluster test-app-cluster \
-            --service task-Cl-app-service-woxc06lu \
-            --force-new-deployment \
-            --region us-east-1
 
 
